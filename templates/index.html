@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tenvis Notifier Controller</title>
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<h1>Tenvis Notifier Controller</h1>
+
+	<button id="btnON" style="height:500px;width:500px;font-size:100px;" ">Turn ON</button>
+	<button id="btnOFF" style="height:500px;width:500px;font-size:100px;" >Turn OFF</button>
+
+	<script type="text/javascript">
+
+		$(document).ready( function() {
+
+			$('#btnON').hide();
+			$('#btnOFF').hide();
+
+			$.ajax({ 
+            	type: "GET",
+            	dataType: "json",
+            	url: "http://45.76.16.174:8080/state",
+            	success: function(data){
+            		alert(data.state);
+            		if( data.state === "off" ) {
+            			$('#btnON').show();
+            		}
+            		else {
+            			$('#btnOFF').show();
+            		}
+            	}
+        	});
+
+		});
+
+		$('#btnON').click(function(){
+
+			$.ajax({ 
+            	type: "GET",
+            	dataType: "json",
+            	url: "http://45.76.16.174:8080/turnon",
+            	success: function(data){
+            		$('#btnON').hide();
+            		$('#btnOFF').show();        
+            		alert(data.result)
+            	}
+        	});        	
+         
+    	});
+
+		$('#btnOFF').click(function(){ 
+
+			$.ajax({ 
+            	type: "GET",
+            	dataType: "json",
+            	url: "http://45.76.16.174:8080/turnoff",
+            	success: function(data){
+            		$('#btnOFF').hide();
+            		$('#btnON').show();            	        
+            		alert(data.result)
+            	}
+        	});          
+         
+    	});
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+.git/
+.gitignore/
+app.py.save
+app.py.save.1
+main.py.save
+securityDetails.py
+securityDetails.pyc
+tenvisController.pyc
+
