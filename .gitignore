@@ -1,5 +1,5 @@
 .git/
-.gitignore/
+.gitignore
 app.py.save
 app.py.save.1
 main.py.save
